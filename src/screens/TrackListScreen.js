@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, Button } from 'react-native';
 const TrackListScreen = ({ navigation }) => {
     return (
         <>
-            <Text style={{ fontSize:48 }}>Account Screen</Text>
+            <Text style={{ fontSize:48 }}>Track list Screen</Text>
             <Button 
                 title="Go to track detail"
                 onPress={() => navigation.navigate('TrackDetail')} 
