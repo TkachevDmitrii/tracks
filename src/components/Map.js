@@ -17,8 +17,8 @@ const Map = () => {
             initialRegion={{
                 latitude: 55.1598408,
                 longitude: 61.4025547,
-                latitudeDelta: 0.5,
-                longitudeDelta: 0.5
+                latitudeDelta: 0.001,
+                longitudeDelta: 0.001
             }}
         >
             <Polyline coordinates={points}/>
