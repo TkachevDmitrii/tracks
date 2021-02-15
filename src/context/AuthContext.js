@@ -6,13 +6,17 @@ import { navigate } from '../navigationRef';
 const authReducer = (state, action) => {
     switch (action.type) {
         case 'add_error': 
-            return { ...state, errorMessage: action.payload };
+			return { ...state, errorMessage: action.payload };
+		case 'signup':
+			return { errorMessage: '', token: action.payload };
 		case 'signin':
 			return { errorMessage: '', token: action.payload };
 		case 'clear_error_message':
 			return { ...state, errorMessage: '' };
 		case 'signout':
-			return { token: null, errorMessage: '' }
+			return { token: null, errorMessage: '' };
+		case 'fetch_name':
+			return action.payload; 
         default:
             return state;
     }
@@ -32,11 +36,11 @@ const clearErrorMessage = dispatch => () => {
 	dispatch({ type: 'clear_error_message' });
 };
 
-const signup = (dispatch) => async ({ email, password }) => {
+const signup = (dispatch) => async ({ email, password, first_name, last_name }) => {
     try{
-        const response = await trackerApi.post('/signup', { email, password });
+        const response = await trackerApi.post('/signup', { email, password, first_name, last_name });
         await AsyncStorage.setItem('token', response.data.token);
-        dispatch({ type: 'signin', payload: response.data.token });
+        dispatch({ type: 'signup', payload: response.data.token });
 
         navigate('TrackList');
     } catch (err) {
@@ -76,6 +80,7 @@ const signout = (dispatch) => async () => {
 		});
 	}
 };
+
 
 export const { Provider, Context } = createDataContext(
 	authReducer,

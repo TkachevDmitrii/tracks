@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Button } from 'react-native';
 import { Context as TrackContext } from '../context/TrackContext';
 import MapView, { Polyline } from 'react-native-maps';
 
@@ -9,6 +9,8 @@ const TrackDetailScreen = ({ navigation }) => {
 
   const track = state.find(t => t._id === _id);
   const initialCoords = track.locations[0].coords;
+
+  console.log(navigation);
 
   return (
     <>
